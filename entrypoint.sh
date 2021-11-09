@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+curl https://ipinfo.io/ip
 
 if [ -z "$AWS_S3_BUCKET" ]; then
   echo "AWS_S3_BUCKET is not set. Quitting."
