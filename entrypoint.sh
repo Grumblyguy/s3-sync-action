@@ -1,8 +1,6 @@
 #!/bin/sh
 
 set -e
-apt-get install curl
-curl https://ipinfo.io/ip
 
 if [ -z "$AWS_S3_BUCKET" ]; then
   echo "AWS_S3_BUCKET is not set. Quitting."
