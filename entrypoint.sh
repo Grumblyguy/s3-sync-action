@@ -2,8 +2,6 @@
 
 set -e
 
-sudo apt-get install curl
-curl https://ipinfo.io/ip
 
 if [ -z "$AWS_S3_BUCKET" ]; then
   echo "AWS_S3_BUCKET is not set. Quitting."
@@ -42,9 +40,9 @@ EOF
 
 aws sts get-caller-identity --profile s3-sync-action
 aws s3 ls s3://quantium-salesforce-project-internal/ --profile s3-sync-action
-
+echo "Running cp"
 aws s3 cp public/_staticTest/test.json s3://quantium-salesforce-project-internal/_staticTest/test.json --profile s3-sync-action
-
+echo "I have run the cp"
 # Sync using our dedicated profile and suppress verbose messages.
 # All other flags are optional via the `args:` directive.
 sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
