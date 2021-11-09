@@ -38,6 +38,11 @@ ${AWS_REGION}
 text
 EOF
 
+aws sts get-caller-identity --profile s3-sync-action
+aws s3 ls s3://quantium-salesforce-project-internal/ --profile s3-sync-action
+
+aws s3 cp public/_staticTest/test.json s3://quantium-salesforce-project-internal/_staticTest/test.json --profile s3-sync-action
+
 # Sync using our dedicated profile and suppress verbose messages.
 # All other flags are optional via the `args:` directive.
 sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
